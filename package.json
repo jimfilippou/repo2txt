@@ -1,0 +1,70 @@
+{
+  "name": "@jimfilippou/repo2txt",
+  "author": "Dimitrios Filippou <info@jimfilippou.com>",
+  "description": "Convert a repository to a text file, useful for AI prompts",
+  "license": "MIT",
+  "type": "module",
+  "version": "0.1.0",
+  "files": [
+    "dist"
+  ],
+  "bin": {
+    "repo2txt": "dist/cli.js"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "prebuild": "tsc -p src/tsconfig.json",
+    "build": "tsup",
+    "prepublishOnly": "npm run build",
+    "semantic-release": "semantic-release"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
+      ],
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): bump `package.json` to ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ]
+    ]
+  },
+  "tsup": {
+    "entry": [
+      "src/bin/cli.ts"
+    ],
+    "format": [
+      "esm"
+    ],
+    "tsconfig": "src/tsconfig.json",
+    "clean": true,
+    "splitting": true,
+    "minify": true
+  },
+  "dependencies": {
+    "@stricli/core": "^1.0.0"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "6.0.3",
+    "@semantic-release/git": "10.0.1",
+    "@types/node": "22.x",
+    "semantic-release": "24.1.2",
+    "tsup": "^6.7.0",
+    "typescript": "5.6.2"
+  }
+}
