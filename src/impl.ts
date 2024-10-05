@@ -1,4 +1,5 @@
 import type { LocalContext } from "./context";
+import NodeBuffer from "node:buffer";
 
 interface CommandFlags {
   exclude?: string[];
@@ -25,42 +26,6 @@ export default async function (this: LocalContext, flags: CommandFlags, project:
   ];
   const excludeItems = new Set([...defaultExcludes, ...(flags.exclude || [])]);
 
-  const binaryExtensions = new Set([
-    ".jpg",
-    ".jpeg",
-    ".ico",
-    ".png",
-    ".gif",
-    ".bmp",
-    ".tiff",
-    ".webp",
-    ".mp4",
-    ".avi",
-    ".mov",
-    ".wmv",
-    ".flv",
-    ".webm",
-    ".mp3",
-    ".wav",
-    ".ogg",
-    ".flac",
-    ".aac",
-    ".pdf",
-    ".doc",
-    ".docx",
-    ".xls",
-    ".xlsx",
-    ".ppt",
-    ".pptx",
-    ".zip",
-    ".rar",
-    ".7z",
-    ".tar",
-    ".gz",
-    ".tgz",
-    ".DS_Store",
-  ]);
-
   function getErrorMessage(error: unknown): string {
     return error instanceof Error ? error.message : String(error);
   }
@@ -70,7 +35,7 @@ export default async function (this: LocalContext, flags: CommandFlags, project:
   }
 
   function isBinaryFile(filePath: string): boolean {
-    return binaryExtensions.has(path.extname(filePath).toLowerCase());
+    return !NodeBuffer.isUtf8(fs.readFileSync(filePath));
   }
 
   function getAllFiles(dirPath: string, arrayOfFiles: string[] = []): string[] {
