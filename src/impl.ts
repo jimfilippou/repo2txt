@@ -16,7 +16,6 @@ export default async function (this: LocalContext, flags: CommandFlags, project:
     ".vscode",
     ".idea",
     ".env",
-    ".DS_Store",
     "Thumbs.db",
     "yarn.lock",
     "npm-debug.log",
@@ -58,6 +57,8 @@ export default async function (this: LocalContext, flags: CommandFlags, project:
     ".7z",
     ".tar",
     ".gz",
+    ".tgz",
+    ".DS_Store",
   ]);
 
   function getErrorMessage(error: unknown): string {
