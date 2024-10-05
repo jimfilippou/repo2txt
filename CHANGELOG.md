@@ -1,3 +1,10 @@
+## [0.1.1](https://github.com/jimfilippou/repo2txt/compare/v0.1.0...v0.1.1) (2024-10-05)
+
+
+### Bug Fixes
+
+* :ambulance: Fix incorrect commiter name ([972be15](https://github.com/jimfilippou/repo2txt/commit/972be1535b7801db11ec670fa5d56b19676f7d9f))
+
 # 1.0.0 (2024-10-05)
 
 
