@@ -1,3 +1,10 @@
+# 1.0.0 (2024-10-05)
+
+
+### Features
+
+* Initial commit ([1886510](https://github.com/jimfilippou/repo2txt/commit/188651044ec3179defabd06a1184ebc861405a9d))
+
 ## [1.1.6](https://github.com/jimfilippou/repo2txt/compare/v1.1.5...v1.1.6) (2024-10-05)
 
 
