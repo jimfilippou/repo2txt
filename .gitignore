@@ -27,3 +27,6 @@ jspm_packages/
 
 # The actual repo2txt file
 repo2txt.txt
+
+# Dist directory
+dist/
