@@ -1,3 +1,10 @@
+## [0.2.1](https://github.com/jimfilippou/repo2txt/compare/v0.2.0...v0.2.1) (2024-12-24)
+
+
+### Bug Fixes
+
+* Add custom usage examples for exclude flag in command documentation ([5edaa0a](https://github.com/jimfilippou/repo2txt/commit/5edaa0a1f974fad9765dfad57f8dada860e6dd54))
+
 # [0.2.0](https://github.com/jimfilippou/repo2txt/compare/v0.1.2...v0.2.0) (2024-12-24)
 
 
