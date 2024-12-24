@@ -27,6 +27,7 @@ const command = buildCommand({
   },
   docs: {
     brief: description,
+    customUsage: ["--exclude node_modules,dist,.git", "--exclude node_modules", "--exclude dist"],
   },
 });
 
