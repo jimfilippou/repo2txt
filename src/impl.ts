@@ -1,8 +1,9 @@
+import { isValidCommaString } from "./lib/valid-csv";
 import type { LocalContext } from "./context";
 import NodeBuffer from "node:buffer";
 
 interface CommandFlags {
-  exclude?: string[];
+  exclude?: string;
 }
 
 export default async function (this: LocalContext, flags: CommandFlags, project: string): Promise<void> {
@@ -24,14 +25,21 @@ export default async function (this: LocalContext, flags: CommandFlags, project:
     "package-lock.json",
     outputFileName,
   ];
-  const excludeItems = new Set([...defaultExcludes, ...(flags.exclude || [])]);
+
+  function parseExclusions(excludeFlag: string | undefined): string[] {
+    if (excludeFlag && isValidCommaString(excludeFlag)) return excludeFlag.split(",");
+    excludeFlag && console.warn("Invalid --exclude flag.");
+    return [];
+  }
+
+  const excludedItems = new Set([...defaultExcludes, ...parseExclusions(flags.exclude)]);
 
   function getErrorMessage(error: unknown): string {
     return error instanceof Error ? error.message : String(error);
   }
 
   function shouldExclude(itemPath: string): boolean {
-    return excludeItems.has(path.basename(itemPath)) || path.basename(itemPath) === outputFileName;
+    return excludedItems.has(path.basename(itemPath)) || path.basename(itemPath) === outputFileName;
   }
 
   function isBinaryFile(filePath: string): boolean {
