@@ -17,10 +17,12 @@ const command = buildCommand({
       exclude: {
         kind: "parsed",
         optional: true,
-        variadic: true,
-        brief: "List of directories to exclude",
+        brief: "A string of comma-separated file names or directories to exclude",
         parse: String,
       },
+    },
+    aliases: {
+      e: "exclude",
     },
   },
   docs: {
