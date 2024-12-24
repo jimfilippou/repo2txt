@@ -18,7 +18,8 @@
     "prebuild": "tsc -p src/tsconfig.json",
     "build": "tsup",
     "prepublishOnly": "npm run build",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "test": "vitest"
   },
   "release": {
     "plugins": [
@@ -57,14 +58,15 @@
     "minify": true
   },
   "dependencies": {
-    "@stricli/core": "^1.0.0"
+    "@stricli/core": "1.1.0"
   },
   "devDependencies": {
     "@semantic-release/changelog": "6.0.3",
     "@semantic-release/git": "10.0.1",
-    "@types/node": "22.x",
-    "semantic-release": "24.1.2",
-    "tsup": "^6.7.0",
-    "typescript": "5.6.2"
+    "@types/node": "^22",
+    "semantic-release": "24.2.0",
+    "tsup": "8.3.5",
+    "typescript": "5.7.2",
+    "vitest": "^2.1.8"
   }
 }
